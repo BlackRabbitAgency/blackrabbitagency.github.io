@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRabbit — Creative Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #141414;
+    --bg3: #1a1a1a;
+    --border: rgba(255,255,255,0.07);
+    --white: #ffffff;
+    --gray: #888888;
+    --accent: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-logo span { color: var(--gray); font-weight: 300; }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--white);
+    color: var(--bg) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gray);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--gray);
+    font-weight: 400;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--bg);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: opacity 0.3s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.3); }
+
+  .hero-stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 100px 60px; }
+
+  .section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--gray);
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--bg); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--bg2);
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover { background: var(--bg3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-num {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .service-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .service-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  /* ── RESULTS ── */
+  .results { background: var(--bg2); }
+
+  .results-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .results-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .result-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    border-radius: 4px;
+  }
+
+  .result-card.big {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .result-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .result-num.green { color: #4ade80; }
+  .result-num.white { color: var(--white); }
+
+  .result-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .result-growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(74,222,128,0.1);
+    color: #4ade80;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+
+  /* ── WHY ── */
+  .why { background: var(--bg); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .why-item {
+    padding: 40px 36px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    transition: background 0.3s;
+  }
+
+  .why-item:hover { background: var(--bg3); }
+
+  .why-item-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .why-item-title {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .why-item-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--white);
+    color: var(--bg);
+    text-align: center;
+    padding: 100px 60px;
+  }
+
+  .cta-section .section-title { color: var(--bg); }
+  .cta-section .section-tag { color: rgba(0,0,0,0.4); }
+
+  .cta-section .section-desc {
+    color: rgba(0,0,0,0.5);
+    margin: 0 auto 48px;
+  }
+
+  .btn-dark {
+    background: var(--bg);
+    color: var(--white);
+    padding: 18px 48px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    display: inline-block;
+    transition: opacity 0.3s;
+  }
+
+  .btn-dark:hover { opacity: 0.8; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-logo span { color: var(--gray); font-weight: 300; }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .results-inner { grid-template-columns: 1fr; gap: 40px; }
+    .results-cards { grid-template-columns: 1fr; }
+    .result-card.big { grid-column: span 1; flex-direction: column; align-items: flex-start; }
+    footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    .hero-stats { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Black<span>Rabbit</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#results">Результаты</a></li>
+    <li><a href="#why">Преимущества</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Связаться</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">OnlyFans Management Agency</div>
+  <h1>Black<em>Rabbit</em><br>Agency</h1>
+  <p class="hero-sub">Мы берём модель с нуля и выводим на стабильный доход. Трафик, чатинг, контент — всё под ключ.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Начать работу</a>
+    <a href="#results" class="btn-secondary">Наши результаты</a>
+  </div>
+  <div class="hero-stats">
+    <div class="fade-up">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label">Моделей в работе</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">$2M+</div>
+      <div class="hero-stat-label">Заработано моделями</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">x3</div>
+      <div class="hero-stat-label">Средний рост оборота</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">24/7</div>
+      <div class="hero-stat-label">Поддержка и чатинг</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Что мы делаем</div>
+      <h2 class="section-title">Полный<br><em>цикл</em> работы</h2>
+    </div>
+    <p class="section-desc">От создания страницы до стабильного дохода — берём на себя всё, чтобы ты занималась контентом.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-icon">📈</div>
+      <div class="service-title">Трафик</div>
+      <p class="service-text">Работаем с Reddit, TikTok, Twitter/X и другими платформами. Строим воронки, которые конвертируют в подписчиков.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-icon">💬</div>
+      <div class="service-title">Чатинг 24/7</div>
+      <p class="service-text">3–4 смены, передовые связки, работа с китами и VIP-фанами. Двусторонний аудит каждой страницы.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Контент</div>
+      <p class="service-text">Помогаем выстроить контент-план, референсы и стратегию PPV. Работаем с тем, что уже есть.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Менеджмент</div>
+      <p class="service-text">Полное ведение аккаунта: ценообразование, акции, аналитика, оптимизация страницы под конверсию.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <div>
+      <div class="section-tag">Цифры говорят сами</div>
+      <h2 class="section-title">Реальные<br><em>результаты</em></h2>
+      <p class="section-desc" style="margin-top:20px;">Скриншоты из кабинетов наших моделей. Без фотошопа — только реальные цифры.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:36px;">Хочу так же</a>
+    </div>
+    <div class="results-cards fade-up">
+      <div class="result-card big">
+        <div>
+          <div class="result-label">Total Earnings</div>
+          <div class="result-num green">$62,055</div>
+          <div class="result-growth">↑ 24.1%</div>
+        </div>
+        <div style="text-align:right">
+          <div class="result-label">За месяц</div>
+          <div style="font-size:13px;color:var(--gray);margin-top:8px;line-height:1.7">Messages: $52,508<br>Tips: $7,724<br>Subs: $1,822</div>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Рост оборота</div>
+        <div class="result-num white">x3</div>
+        <div style="font-size:12px;color:var(--gray);margin-top:8px">без доп. трафика</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Новых подписчиков</div>
+        <div class="result-num white">+840</div>
+        <div style="font-size:12px;color:var(--gray);margin-top:8px">за 30 дней</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-tag">Почему мы</div>
+  <h2 class="section-title">Преимущества<br><em>BlackRabbit</em></h2>
+  <div class="why-grid">
+    <div class="why-item fade-up">
+      <div class="why-item-num">01</div>
+      <div class="why-item-title">Работаем на результат</div>
+      <p class="why-item-text">Зарабатываем процент от твоего дохода — нам выгодно, чтобы ты зарабатывала больше.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">02</div>
+      <div class="why-item-title">Команда под ключ</div>
+      <p class="why-item-text">Трафик-менеджер, чатеры, менеджер аккаунта — всё уже есть, не нужно собирать команду самой.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">03</div>
+      <div class="why-item-title">Прозрачная аналитика</div>
+      <p class="why-item-text">Еженедельные отчёты, доступ к статистике, честные цифры без приукрашивания.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">04</div>
+      <div class="why-item-title">Опыт и кейсы</div>
+      <p class="why-item-text">Есть кейсы x2, x3 к обороту. Знаем что работает — не тестируем на тебе с нуля.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-tag">Готова начать?</div>
+  <h2 class="section-title" style="margin-bottom:20px;">Давай обсудим<br>твой проект</h2>
+  <p class="section-desc">Напиши нам — расскажем как работаем, ответим на вопросы и сделаем бесплатный аудит твоей страницы.</p>
+  <a href="https://t.me/blackrabbitagency" class="btn-dark" target="_blank">Написать в Telegram</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Black<span>Rabbit</span></div>
+  <p class="footer-copy">© 2024 BlackRabbit Agency. Все права защищены.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#results">Результаты</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,260 +1,848 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Black Rabbit Creative Agency</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-    /* Сброс и базовые стили */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: #eee;
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    a {
-      color: #72e2ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    header {
-      padding: 40px 30px 60px;
-      text-align: center;
-      border-bottom: 1px solid #222;
-    }
-    header h1 {
-      font-weight: 600;
-      font-size: 2.4rem;
-      letter-spacing: 6px;
-      margin: 0;
-      color: #72e2ff;
-      font-family: 'Inter', sans-serif;
-      text-transform: uppercase;
-    }
-    main {
-      max-width: 960px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    h2 {
-      font-weight: 600;
-      font-size: 2rem;
-      margin-bottom: 16px;
-      letter-spacing: 1.1px;
-      color: #ccc;
-      text-transform: uppercase;
-      border-left: 4px solid #72e2ff;
-      padding-left: 12px;
-    }
-    p.intro-text {
-      font-weight: 400;
-      font-size: 1.1rem;
-      line-height: 1.55;
-      color: #bbb;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    /* Карусель */
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      border: 1px solid #222;
-      background: #121212;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-      will-change: transform;
-    }
-    .slide {
-      flex: 0 0 100%;
-      padding: 30px 40px;
-      box-sizing: border-box;
-      text-align: center;
-      user-select: none;
-    }
-    .slide img {
-      max-width: 320px;
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(114, 226, 255, 0.3);
-      margin-bottom: 25px;
-      transition: transform 0.3s ease;
-    }
-    .slide img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(114, 226, 255, 0.6);
-    }
-    .slide h3 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #72e2ff;
-      margin-bottom: 8px;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-    .slide p.amount {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #e0f7ff;
-      margin: 0;
-      margin-bottom: 8px;
-      font-feature-settings: "tnum";
-      font-variant-numeric: tabular-nums;
-    }
-    .slide p.rank {
-      font-weight: 400;
-      font-size: 1rem;
-      color: #6aa7b1;
-      margin-top: 0;
-      letter-spacing: 0.05em;
-    }
-    /* Кнопки навигации */
-    button.carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border: none;
-      background: rgba(114, 226, 255, 0.15);
-      color: #72e2ff;
-      font-size: 3rem;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 0 0 6px #72e2ffaa;
-      transition: background 0.3s ease, transform 0.2s ease;
-      user-select: none;
-      z-index: 10;
-    }
-    button.carousel-button:hover {
-      background: rgba(114, 226, 255, 0.4);
-      transform: translateY(-50%) scale(1.15);
-    }
-    button#prevBtn {
-      left: 20px;
-    }
-    button#nextBtn {
-      right: 20px;
-    }
-    /* Адаптив */
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 1.8rem;
-        letter-spacing: 4px;
-      }
-      main {
-        max-width: 100%;
-        padding: 0 15px;
-      }
-      .slide img {
-        max-width: 100%;
-        border-radius: 8px;
-      }
-      button.carousel-button {
-        font-size: 2.6rem;
-        padding: 6px 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BlackRabbit — Creative Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #141414;
+    --bg3: #1a1a1a;
+    --border: rgba(255,255,255,0.07);
+    --white: #ffffff;
+    --gray: #888888;
+    --accent: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-logo span { color: var(--gray); font-weight: 300; }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--white);
+    color: var(--bg) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gray);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--gray);
+    font-weight: 400;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--bg);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: opacity 0.3s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.3); }
+
+  .hero-stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  section { padding: 100px 60px; }
+
+  .section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--gray);
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+
+  .services { background: var(--bg); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--bg2);
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover { background: var(--bg3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-num {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .service-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .service-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  .results { background: var(--bg2); }
+
+  .results-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .results-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .result-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    border-radius: 4px;
+  }
+
+  .result-card.big {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .result-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .result-num.green { color: #4ade80; }
+  .result-num.white { color: var(--white); }
+
+  .result-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .result-growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(74,222,128,0.1);
+    color: #4ade80;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+
+  /* Карусель скринов */
+  .screenshots-block {
+    margin-top: 50px;
+    border-top: 1px solid var(--border);
+    padding: 40px 0 0;
+  }
+
+  .screenshots-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-slide img {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 6px;
+    object-fit: contain;
+    user-select: none;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: var(--white);
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    z-index: 10;
+  }
+
+  .carousel-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  /* Навигационные точки */
+  .carousel-dots {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .carousel-dot.active {
+    background: var(--white);
+    transform: scale(1.4);
+  }
+
+  .why { background: var(--bg); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .why-item {
+    padding: 40px 36px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    transition: background 0.3s;
+  }
+
+  .why-item:hover { background: var(--bg3); }
+
+  .why-item-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .why-item-title {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .why-item-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  .cta-section {
+    background: var(--white);
+    color: var(--bg);
+    text-align: center;
+    padding: 100px 60px;
+  }
+
+  .cta-section .section-title { color: var(--bg); }
+  .cta-section .section-tag { color: rgba(0,0,0,0.4); }
+
+  .cta-section .section-desc {
+    color: rgba(0,0,0,0.5);
+    margin: 0 auto 48px;
+  }
+
+  .btn-dark {
+    background: var(--bg);
+    color: var(--white);
+    padding: 18px 48px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    display: inline-block;
+    transition: opacity 0.3s;
+  }
+
+  .btn-dark:hover { opacity: 0.8; }
+
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-logo span { color: var(--gray); font-weight: 300; }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .results-inner { grid-template-columns: 1fr; gap: 40px; }
+    .results-cards { grid-template-columns: 1fr; }
+    .result-card.big { grid-column: span 1; flex-direction: column; align-items: flex-start; }
+    footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    .hero-stats { gap: 32px; }
+    .carousel-slide img { max-height: 260px; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Black Rabbit Creative Agency</h1>
-  </header>
-  <main>
-    <section id="intro">
-      <h2>Наши достижения</h2>
-      <p class="intro-text">Мы помогаем блогерам и создателям контента достигать впечатляющих показателей и максимизировать доходы. Ниже представлены ключевые результаты в разные месяцы.</p>
-    </section>
-    <section id="results">
-      <h2>Наши результаты</h2>
-      <p class="intro-text">Статистика по некоторым месяцам на платформе Fansly:</p>
-      <div class="carousel-container" aria-label="Карусель результатов">
-        <button id="prevBtn" class="carousel-button" aria-label="Предыдущий слайд">‹</button>
-        <button id="nextBtn" class="carousel-button" aria-label="Следующий слайд">›</button>
-        <div class="carousel-track" role="list">
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/bBgHE6h.jpeg" alt="Результат за последние 30 дней" />
-            <h3>Last 30 Days</h3>
-            <p class="amount">$31,956.46</p>
-            <p class="rank">Top 0.25% on Fansly</p>
-          </div>
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/eNSd1vd.png" alt="Результат за январь 2026" />
-            <h3>Jan 2026</h3>
-            <p class="amount">$6,399.00</p>
-            <p class="rank">Top 1.58% on Fansly</p>
-          </div>
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/MczAUcH.png" alt="Результат за сентябрь 2025" />
-            <h3>Sep 2025</h3>
-            <p class="amount">$10,489.52</p>
-            <p class="rank">Top 1.00% on Fansly</p>
-          </div>
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/myUWfat.png" alt="Результат за октябрь 2025" />
-            <h3>Oct 2025</h3>
-            <p class="amount">$7,573.97</p>
-            <p class="rank">Top 1.34% on Fansly</p>
-          </div>
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/jiLigln.png" alt="Дополнительный результат" />
-            <h3>Additional Data 1</h3>
-            <p class="amount">$X,XXX.XX</p>
-            <p class="rank">Top Y.YY% on Fansly</p>
-          </div>
-          <div class="slide" role="listitem">
-            <img src="https://i.imgur.com/VrtJQnP.png" alt="Дополнительный результат" />
-            <h3>Additional Data 2</h3>
-            <p class="amount">$X,XXX.XX</p>
-            <p class="rank">Top Z.ZZ% on Fansly</p>
-          </div>
+
+<nav>
+  <div class="nav-logo">Black<span>Rabbit</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#results">Результаты</a></li>
+    <li><a href="#why">Преимущества</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Связаться</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">OnlyFans Management Agency</div>
+  <h1>Black<em>Rabbit</em><br>Agency</h1>
+  <p class="hero-sub">Мы берём модель с нуля и выводим на стабильный доход. Трафик, чатинг, контент — всё под ключ.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Начать работу</a>
+    <a href="#results" class="btn-secondary">Наши результаты</a>
+  </div>
+  <div class="hero-stats">
+    <div class="fade-up">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label">Моделей в работе</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">$2M+</div>
+      <div class="hero-stat-label">Заработано моделями</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">x3</div>
+      <div class="hero-stat-label">Средний рост оборота</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-stat-num">24/7</div>
+      <div class="hero-stat-label">Поддержка и чатинг</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Что мы делаем</div>
+      <h2 class="section-title">Полный<br><em>цикл</em> работы</h2>
+    </div>
+    <p class="section-desc">От создания страницы до стабильного дохода — берём на себя всё, чтобы ты занималась контентом.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-icon">📈</div>
+      <div class="service-title">Трафик</div>
+      <p class="service-text">Работаем с Reddit, TikTok, Twitter/X и другими платформами. Строим воронки, которые конвертируют в подписчиков.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-icon">💬</div>
+      <div class="service-title">Чатинг 24/7</div>
+      <p class="service-text">3–4 смены, передовые связки, работа с китами и VIP-фанами. Двусторонний аудит каждой страницы.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Контент</div>
+      <p class="service-text">Помогаем выстроить контент-план, референсы и стратегию PPV. Работаем с тем, что уже есть.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Менеджмент</div>
+      <p class="service-text">Полное ведение аккаунта: ценообразование, акции, аналитика, оптимизация страницы под конверсию.</p>
+    </div>
+  </div>
+</section>
+
+<section class="results" id="results">
+  <div class="results-inner">
+    <div>
+      <div class="section-tag">Цифры говорят сами</div>
+      <h2 class="section-title">Реальные<br><em>результаты</em></h2>
+      <p class="section-desc" style="margin-top:20px;">Скриншоты из кабинетов наших моделей. Без фотошопа — только реальные цифры.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:36px;">Хочу так же</a>
+    </div>
+    <div class="results-cards fade-up">
+      <div class="result-card big">
+        <div>
+          <div class="result-label">Total Earnings</div>
+          <div class="result-num green">$62,055</div>
+          <div class="result-growth">↑ 24.1%</div>
+        </div>
+        <div style="text-align:right">
+          <div class="result-label">За месяц</div>
+          <div style="font-size:13px;color:var(--gray);margin-top:8px;line-height:1.7">Messages: $52,508<br>Tips: $7,724<br>Subs: $1,822</div>
         </div>
       </div>
-    </section>
-  </main>
-  <script>
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentIndex = 0;
+      <div class="result-card">
+        <div class="result-label">Рост оборота</div>
+        <div class="result-num white">x3</div>
+        <div style="font-size:12px;color:var(--gray);margin-top:8px">без доп. трафика</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Новых подписчиков</div>
+        <div class="result-num white">+840</div>
+        <div style="font-size:12px;color:var(--gray);margin-top:8px">за 30 дней</div>
+      </div>
+    </div>
+  </div>
 
-    function updateCarousel() {
-      const slideWidth = slides[0].getBoundingClientRect().width;
-      track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-    }
+  <!-- Карусель со скриншотами под результатами -->
+  <div class="screenshots-block fade-up" style="margin-top:60px;">
+    <div class="screenshots-label">Скриншоты из кабинетов</div>
+    <div class="carousel-wrap" aria-label="Карусель скриншотов результатов">
+      <button class="carousel-btn prev" aria-label="Предыдущий слайд">&#8249;</button>
+      <button class="carousel-btn next" aria-label="Следующий слайд">&#8250;</button>
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/bBgHE6h.jpeg" alt="Результат за последние 30 дней: $31,956.46, Top 0.25%" />
+        </div>
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/eNSd1vd.png" alt="Результат за январь 2026: $6,399.00, Top 1.58%" />
+        </div>
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/MczAUcH.png" alt="Результат за сентябрь 2025: $10,489.52, Top 1.00%" />
+        </div>
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/myUWfat.png" alt="Результат за октябрь 2025: $7,573.97, Top 1.34%" />
+        </div>
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/jiLigln.png" alt="Дополнительный результат 1" />
+        </div>
+        <div class="carousel-slide">
+          <img src="https://i.imgur.com/VrtJQnP.png" alt="Дополнительный результат 2" />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots" aria-label="Навигация по слайдам"></div>
+  </div>
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+</section>
+
+<section class="why" id="why">
+  <div class="section-tag">Почему мы</div>
+  <h2 class="section-title">Преимущества<br><em>BlackRabbit</em></h2>
+  <div class="why-grid">
+    <div class="why-item fade-up">
+      <div class="why-item-num">01</div>
+      <div class="why-item-title">Работаем на результат</div>
+      <p class="why-item-text">Зарабатываем процент от твоего дохода — нам выгодно, чтобы ты зарабатывала больше.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">02</div>
+      <div class="why-item-title">Команда под ключ</div>
+      <p class="why-item-text">Трафик-менеджер, чатеры, менеджер аккаунта — всё уже есть, не нужно собирать команду самой.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">03</div>
+      <div class="why-item-title">Прозрачная аналитика</div>
+      <p class="why-item-text">Еженедельные отчёты, доступ к статистике, честные цифры без приукрашивания.</p>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-item-num">04</div>
+      <div class="why-item-title">Опыт и кейсы</div>
+      <p class="why-item-text">Есть кейсы x2, x3 к обороту. Знаем что работает — не тестируем на тебе с нуля.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="section-tag">Готова начать?</div>
+  <h2 class="section-title" style="margin-bottom:20px;">Давай обсудим<br>твой проект</h2>
+  <p class="section-desc">Напиши нам — расскажем как работаем, ответим на вопросы и сделаем бесплатный аудит твоей страницы.</p>
+  <a href="https://t.me/blackrabbitagency" class="btn-dark" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Black<span>Rabbit</span></div>
+  <p class="footer-copy">© 2024 BlackRabbit Agency. Все права защищены.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#results">Результаты</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Анимация fade-up при прокрутке
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Карусель скринов
+  const carouselTrack = document.querySelector('.carousel-track');
+  const slides = Array.from(carouselTrack.children);
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const dotsContainer = document.querySelector('.carousel-dots');
+
+  let currentIndex = 0;
+
+  // Создаем точки навигации
+  slides.forEach((_, idx) => {
+    const dot = document.createElement('button');
+    dot.classList.add('carousel-dot');
+    dot.setAttribute('aria-label', `Перейти к слайду ${idx + 1}`);
+    if (idx === 0) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+
+    dot.addEventListener('click', () => {
+      currentIndex = idx;
       updateCarousel();
     });
+  });
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
-      updateCarousel();
-    });
+  const dots = Array.from(dotsContainer.children);
 
-    // Авто прокрутка
-    setInterval(() => {
-      nextBtn.click();
-    }, 5500);
+  function updateCarousel() {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    carouselTrack.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+  }
 
-    window.addEventListener('resize', updateCarousel);
+  prevBtn.addEventListener('click', () => {
+    currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
     updateCarousel();
-  </script>
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    updateCarousel();
+  });
+
+  // Автопрокрутка каждые 6 секунд
+  setInterval(() => {
+    nextBtn.click();
+  }, 6000);
+
+  // Обновление при ресайзе
+  window.addEventListener('resize', updateCarousel);
+
+  // Инициализация
+  updateCarousel();
+</script>
+
 </body>
 </html>
